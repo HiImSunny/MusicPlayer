@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Root: màn Player, dùng ConstraintLayout để ràng buộc linh hoạt các khối -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/player"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="52dp"
+    android:background="@android:color/white">
+
+    <!-- Thanh trên cùng chứa 2 nút; width=0dp ⇒ bám full ngang nhờ ràng buộc start/end -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <!-- Nút quay lại: bám Start + căn giữa dọc trong topBar -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_chevron_down"
+            app:tint="#FF0436"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- Nút chia sẻ: bám End + căn giữa dọc trong topBar -->
+        <ImageButton
+            android:id="@+id/btnShare"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_share"
+            app:tint="#FF0436"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Banner quảng cáo: đặt ở đáy màn hình; width=0dp ⇒ kéo full ngang -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/adBanner"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_margin="12dp"
+        android:layout_marginBottom="64dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Bên trong banner: layout con để đặt CTA -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Nút/nhãn kêu gọi hành động: bám End, căn giữa dọc -->
+            <TextView
+                android:id="@+id/adCta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quảng cáo"
+                android:textStyle="bold"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp"
+                android:background="@drawable/ads"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Khối nội dung chính: nằm giữa topBar và adBanner (co giãn theo khoảng trống) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/adBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar">
+
+        <!-- Ảnh album: ở trên cùng của content, căn giữa ngang -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardArt"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Ảnh bìa thực tế; centerCrop để phủ kín card -->
+            <ImageView
+                android:id="@+id/cardArtImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tên bài hát: một dòng, cắt đuôi; căn giữa ngang, đặt dưới ảnh -->
+        <TextView
+            android:id="@+id/tvSongName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="SongName"
+            android:textColor="#111111"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardArt"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
+
+        <!-- Tác giả: một dòng; căn giữa ngang, đặt dưới tên bài hát -->
+        <TextView
+            android:id="@+id/tvSongAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="SongAuthor"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSongName"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
+
+        <!-- Thanh tua: đặt ngay dưới tác giả; full bề ngang nhờ start/end vào parent -->
+        <SeekBar
+            android:id="@+id/seek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:progressBackgroundTint="#33444444"
+            android:progressTint="#222222"
+            android:thumbTint="#222222"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSongAuthor" />
+
+        <!-- Hàng hiển thị thời gian: trái là hiện tại, phải là tổng thời lượng -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rowTimes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seek">
+
+            <!-- Thời gian hiện tại (bên trái) -->
+            <TextView
+                android:id="@+id/tvCur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textColor="#666666"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+
+            <!-- Tổng thời lượng (bên phải) -->
+            <TextView
+                android:id="@+id/tvDur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5:10"
+                android:textColor="#666666"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvCur"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Cụm nút điều khiển: Repeat/Prev/Play- Pause/Next/Shuffle.
+             Tất cả đều căn giữa dọc nhờ top/bottom vào parent -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rowControls"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowTimes">
+
+            <!-- Nút Play/Pause: đặt ở giữa cụm (nhờ ràng buộc hai bên với Prev/Next) -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnPlayPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_play"
+                app:backgroundTint="#111111"
+                app:ensureMinTouchTargetSize="false"
+                app:fabCustomSize="88dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:maxImageSize="40dp"
+                app:tint="@android:color/white" />
+
+            <!-- Nút lùi bài: nằm bên trái FAB -->
+            <ImageButton
+                android:id="@+id/btnPrev"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_icon_ripple"
+                android:src="@drawable/ic_skip_previous"
+                app:layout_constraintBottom_toBottomOf="@id/btnPlayPause"
+                app:layout_constraintEnd_toStartOf="@id/btnPlayPause"
+                app:layout_constraintTop_toTopOf="@id/btnPlayPause"
+                app:tint="#333333" />
+
+            <!-- Nút tới bài: nằm bên phải FAB -->
+            <ImageButton
+                android:id="@+id/btnNext"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/bg_icon_ripple"
+                android:src="@drawable/ic_skip_next"
+                app:layout_constraintBottom_toBottomOf="@id/btnPlayPause"
+                app:layout_constraintStart_toEndOf="@id/btnPlayPause"
+                app:layout_constraintTop_toTopOf="@id/btnPlayPause"
+                app:tint="#333333" />
+
+            <!-- Nút Repeat: mép trái cụm -->
+            <ImageButton
+                android:id="@+id/btnRepeat"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_icon_ripple"
+                android:src="@drawable/ic_repeat"
+                app:layout_constraintBottom_toBottomOf="@id/btnPlayPause"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btnPlayPause"
+                app:tint="#222222" />
+
+            <!-- Nút Shuffle: mép phải cụm -->
+            <ImageButton
+                android:id="@+id/btnShuffle"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_icon_ripple"
+                android:src="@drawable/ic_shuffle"
+                app:layout_constraintBottom_toBottomOf="@id/btnPlayPause"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btnPlayPause"
+                app:tint="#222222" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
