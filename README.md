@@ -1,5 +1,5 @@
-<div align="right">
-  <a href="README.md">�� English</a> &nbsp;|&nbsp; <a href="README_VI.md">🇻🇳 Tiếng Việt</a>
+<div align="left">
+  <a href="README.md"><b>EN</b></a> &nbsp;|&nbsp; <a href="README_VI.md">🇻🇳 Tiếng Việt</a>
 </div>
 
 # 🎵 MusicPlayer
