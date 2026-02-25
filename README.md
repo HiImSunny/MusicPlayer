@@ -1,3 +1,7 @@
+<div align="right">
+  <a href="README.md">🇬🇧 English</a> &nbsp;|&nbsp; <a href="README_VI.md">🇻🇳 Tiếng Việt</a>
+</div>
+
 # 🎵 MusicPlayer
 
 An Android music streaming application built with **Java** and powered by **Firebase** backend services. The app allows users to browse, search, and stream music online with a smooth playback experience and premium subscription support.
@@ -83,6 +87,7 @@ app/src/main/java/vn/khengandkhoi/musicplayer/
 ### Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/HiImSunny/MusicPlayer.git
    cd MusicPlayer
@@ -91,6 +96,7 @@ app/src/main/java/vn/khengandkhoi/musicplayer/
 2. **Add Firebase config**
 
    Download your `google-services.json` from the [Firebase Console](https://console.firebase.google.com/) and place it in:
+
    ```
    app/google-services.json
    ```
