@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Google Services - contains Firebase API keys (DO NOT COMMIT)
+google-services.json
